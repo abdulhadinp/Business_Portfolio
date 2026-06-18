@@ -37,7 +37,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden hero-bg">
       <div className="container-main relative z-10 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
           
           {/* Left Column Content */}
           <motion.div 
