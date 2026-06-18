@@ -34,10 +34,53 @@ export default function Hero() {
     };
   }, [ROLES.length]);
 
+  const HeroImage = () => (
+    <>
+      <div className="absolute w-[500px] h-[500px] rounded-full bg-[var(--violet-glow)] blur-[80px] -z-10 mix-blend-multiply animate-[spin_20s_linear_infinite]" />
+      <div className="relative w-full max-w-[380px] aspect-[3/4] rounded-[24px] bg-gradient-to-br from-[#EEF3FF] to-[#F3EEFF] shadow-[var(--shadow-photo)]">
+        <Image
+          src="/assets/profile.jpg"
+          alt="Abdul Hadi"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover object-top rounded-[24px]"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+          }}
+        />
+        <div className="absolute inset-0 flex items-center justify-center -z-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]">
+          <span className="text-6xl font-bold text-gray-300">AH</span>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/40 to-transparent rounded-b-[24px]" />
+        
+        <motion.div animate={float} className="absolute -right-6 md:-right-12 top-12 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
+          <div className="p-2 bg-[var(--bg-soft)] rounded-lg">
+            <Building2 size={16} className="text-[var(--accent)]" />
+          </div>
+          <div>
+            <div className="text-[11px] font-semibold text-[var(--text-primary)]">Zyvora Technologies</div>
+            <div className="text-[10px] font-medium text-[var(--text-muted)]">Founder</div>
+          </div>
+        </motion.div>
+
+        <motion.div animate={floatReverse} className="absolute -left-6 md:-left-12 bottom-20 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
+          <div className="p-2 bg-[var(--green-light)] rounded-lg">
+            <MapPin size={16} className="text-[var(--green)]" />
+          </div>
+          <div>
+            <div className="text-[11px] font-semibold text-[var(--text-primary)]">Kathmandu, Nepal</div>
+          </div>
+        </motion.div>
+      </div>
+    </>
+  );
+
   return (
     <section id="hero" className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden hero-bg">
       <div className="container-main relative z-10 w-full">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
           
           {/* Left Column Content */}
           <motion.div 
@@ -78,9 +121,14 @@ export default function Hero() {
             </motion.div>
 
             {/* Subheadline */}
-            <motion.p variants={fadeUp} className="text-lg text-[var(--text-secondary)] leading-[1.7] max-w-xl mb-12">
+            <motion.p variants={fadeUp} className="text-lg text-[var(--text-secondary)] leading-[1.7] max-w-xl mb-12 lg:mb-12">
               I turn complex business problems into clean, scalable software. Based in Kathmandu, Nepal. Building for clients across South Asia and beyond.
             </motion.p>
+
+            {/* Mobile Only Photo Component */}
+            <motion.div variants={fadeUp} className="w-full flex justify-center mb-12 block lg:hidden relative">
+              <HeroImage />
+            </motion.div>
 
             {/* Stats Row */}
             <motion.div variants={fadeUp} className="flex items-center gap-8 sm:gap-12 mb-12">
@@ -120,67 +168,14 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right Column Content (Photo) */}
+          {/* Right Column Content (Desktop Photo) */}
           <motion.div 
-            className="w-full lg:w-[40%] flex justify-center lg:justify-end relative"
+            className="hidden lg:flex w-[40%] justify-end relative"
             variants={slideRight}
             initial="hidden"
             animate="visible"
           >
-            {/* Decorative background blob */}
-            <div className="absolute w-[500px] h-[500px] rounded-full bg-[var(--violet-glow)] blur-[80px] -z-10 mix-blend-multiply animate-[spin_20s_linear_infinite]" />
-
-            <div className="relative w-full max-w-[380px] aspect-[3/4] rounded-[24px] bg-gradient-to-br from-[#EEF3FF] to-[#F3EEFF] shadow-[var(--shadow-photo)] mt-8 lg:mt-0">
-              
-              <Image
-                src="/assets/profile.jpg"
-                alt="Abdul Hadi"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-top rounded-[24px]"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  console.warn("Profile photo missing at /public/assets/profile.jpg. Rendered placeholder instead.");
-                }}
-              />
-              
-              {/* Fallback placeholder if image is missing or fails to load */}
-              <div className="absolute inset-0 flex items-center justify-center -z-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]">
-                <span className="text-6xl font-bold text-gray-300">AH</span>
-              </div>
-
-              {/* Bottom gradient overlay to blend */}
-              <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/40 to-transparent rounded-b-[24px]" />
-
-              {/* Floating Badge 1 (Top Right) */}
-              <motion.div 
-                animate={float}
-                className="absolute -right-6 md:-right-12 top-12 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20"
-              >
-                <div className="p-2 bg-[var(--bg-soft)] rounded-lg">
-                  <Building2 size={16} className="text-[var(--accent)]" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-semibold text-[var(--text-primary)]">Zyvora Technologies</div>
-                  <div className="text-[10px] font-medium text-[var(--text-muted)]">Founder</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge 2 (Bottom Left) */}
-              <motion.div 
-                animate={floatReverse}
-                className="absolute -left-6 md:-left-12 bottom-20 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20"
-              >
-                <div className="p-2 bg-[var(--green-light)] rounded-lg">
-                  <MapPin size={16} className="text-[var(--green)]" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-semibold text-[var(--text-primary)]">Kathmandu, Nepal</div>
-                </div>
-              </motion.div>
-            </div>
+            <HeroImage />
           </motion.div>
 
         </div>
