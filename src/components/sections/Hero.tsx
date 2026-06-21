@@ -65,7 +65,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div animate={floatReverse} className="absolute -left-6 md:-left-12 bottom-20 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
+        <motion.div className="absolute -left-6 md:-left-12 bottom-20 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
           <div className="p-2 bg-[var(--green-light)] rounded-lg">
             <MapPin size={16} className="text-[var(--green)]" />
           </div>

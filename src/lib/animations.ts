@@ -31,11 +31,21 @@ export const stagger: Variants = {
 };
 
 export const float = {
-  y: [0, -10, 0],
-  transition: { duration: 4, repeat: Infinity, ease: "easeInOut" as const }
+  y: [0, -12],
+  transition: { 
+    duration: 2.5, 
+    repeat: Infinity, 
+    repeatType: "reverse" as const,
+    ease: "easeInOut" as const 
+  }
 };
 
 export const floatReverse = {
-  y: [0, 10, 0],
-  transition: { duration: 4, repeat: Infinity, ease: "easeInOut" as const, delay: 2 }
+  y: 12,
+  transition: { 
+    duration: 2.8, 
+    repeat: Infinity, 
+    repeatType: "reverse" as const,
+    ease: "easeInOut" as const 
+  }
 };
