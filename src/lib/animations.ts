@@ -31,7 +31,7 @@ export const stagger: Variants = {
 };
 
 export const float = {
-  y: [0, -12],
+  y: [0, -15],
   transition: { 
     duration: 2.5, 
     repeat: Infinity, 
@@ -41,7 +41,7 @@ export const float = {
 };
 
 export const floatReverse = {
-  y: 12,
+  y: [0, 15],
   transition: { 
     duration: 2.8, 
     repeat: Infinity, 

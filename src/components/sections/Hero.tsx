@@ -9,6 +9,49 @@ import AnimatedCounter from "../ui/AnimatedCounter";
 import { smoothScrollTo } from "@/lib/utils";
 import { fadeUp, slideRight, stagger, float, floatReverse } from "@/lib/animations";
 
+const HeroImage = () => (
+  <>
+    <div className="absolute w-[500px] h-[500px] rounded-full bg-[var(--violet-glow)] blur-[80px] -z-10 mix-blend-multiply animate-[spin_20s_linear_infinite]" />
+    <div className="relative w-full max-w-[380px] aspect-[3/4] rounded-[24px] bg-gradient-to-br from-[#EEF3FF] to-[#F3EEFF] shadow-[var(--shadow-photo)]">
+      <Image
+        src="/assets/profile.jpg"
+        alt="Abdul Hadi"
+        fill
+        priority
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover object-top rounded-[24px]"
+        onError={(e) => {
+          const target = e.target as HTMLImageElement;
+          target.style.display = 'none';
+        }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center -z-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]">
+        <span className="text-6xl font-bold text-gray-300">AH</span>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/40 to-transparent rounded-b-[24px]" />
+      
+      <motion.div animate={float} className="absolute -right-6 md:-right-12 top-12 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
+        <div className="p-2 bg-[var(--bg-soft)] rounded-lg">
+          <Building2 size={16} className="text-[var(--accent)]" />
+        </div>
+        <div>
+          <div className="text-[11px] font-semibold text-[var(--text-primary)]">Zyvora Technologies</div>
+          <div className="text-[10px] font-medium text-[var(--text-muted)]">Founder</div>
+        </div>
+      </motion.div>
+
+      <motion.div animate={floatReverse} className="absolute -left-6 md:-left-12 bottom-20 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
+        <div className="p-2 bg-[var(--green-light)] rounded-lg">
+          <MapPin size={16} className="text-[var(--green)]" />
+        </div>
+        <div>
+          <div className="text-[11px] font-semibold text-[var(--text-primary)]">Kathmandu, Nepal</div>
+        </div>
+      </motion.div>
+    </div>
+  </>
+);
+
 export default function Hero() {
   const ROLES = [
     "Full-Stack Engineer",
@@ -33,49 +76,6 @@ export default function Hero() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [ROLES.length]);
-
-  const HeroImage = () => (
-    <>
-      <div className="absolute w-[500px] h-[500px] rounded-full bg-[var(--violet-glow)] blur-[80px] -z-10 mix-blend-multiply animate-[spin_20s_linear_infinite]" />
-      <div className="relative w-full max-w-[380px] aspect-[3/4] rounded-[24px] bg-gradient-to-br from-[#EEF3FF] to-[#F3EEFF] shadow-[var(--shadow-photo)]">
-        <Image
-          src="/assets/profile.jpg"
-          alt="Abdul Hadi"
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover object-top rounded-[24px]"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
-          }}
-        />
-        <div className="absolute inset-0 flex items-center justify-center -z-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-[24px]">
-          <span className="text-6xl font-bold text-gray-300">AH</span>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/40 to-transparent rounded-b-[24px]" />
-        
-        <motion.div animate={float} className="absolute -right-6 md:-right-12 top-12 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
-          <div className="p-2 bg-[var(--bg-soft)] rounded-lg">
-            <Building2 size={16} className="text-[var(--accent)]" />
-          </div>
-          <div>
-            <div className="text-[11px] font-semibold text-[var(--text-primary)]">Zyvora Technologies</div>
-            <div className="text-[10px] font-medium text-[var(--text-muted)]">Founder</div>
-          </div>
-        </motion.div>
-
-        <motion.div className="absolute -left-6 md:-left-12 bottom-20 bg-white rounded-[10px] shadow-lg p-3 flex items-center gap-3 z-20">
-          <div className="p-2 bg-[var(--green-light)] rounded-lg">
-            <MapPin size={16} className="text-[var(--green)]" />
-          </div>
-          <div>
-            <div className="text-[11px] font-semibold text-[var(--text-primary)]">Kathmandu, Nepal</div>
-          </div>
-        </motion.div>
-      </div>
-    </>
-  );
 
   return (
     <section id="hero" className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden hero-bg">
